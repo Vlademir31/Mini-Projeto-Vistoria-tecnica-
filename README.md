@@ -1,5 +1,7 @@
 # AutoCheck.Console - Sistema de Gestão e Laudos Automotivos
 
+---
+
 ## Índice
 
 + [Sobre o Projeto](#sobre-o-projeto)
@@ -19,7 +21,7 @@
 
 ## Sobre o Projeto
 
-O ***AutoCheck.ConsoleApp*** é uma aplicação desenvolvida em C# /.NET com o objetivo de simular um sitema de gestão de vistorias e laudos automotivos.
+O ***AutoCheck.ConsoleApp*** é uma aplicação desenvolvida em **C# /.NET** com o objetivo de simular um sitema de gestão de vistorias e laudos automotivos.
 
 A proposta do sistema é permitir que informações de um veiculo sejam avaliadas durante um processo de vistoria, possibilitando posteriormente o registro dos resultados, identificação de ped^ncias, cálculo de pontuação e geração de relatórios.
 
@@ -65,6 +67,8 @@ Durante a vistoria os itens poderão ser classificados como:
 - Ruim
 
 Essas Classificações serão utilizadas posteriormente para calcular a pontuação e o percentual de aprovação do veiculo.
+
+---
 
 ## Funcionalidades Atuais
 
@@ -132,6 +136,8 @@ Opção destinada à futura implementação do processo de geração e apresenta
 
 Encerra a execução do sistema.
 
+---
+
 # Tecnologias Utilizadas
 
 Até o momento o projeto utiliza:
@@ -163,6 +169,8 @@ Até o momento o projeto utiliza:
 + Namespace
 + Instanciação de objetos
 
+---
+
 # Estrutura Atual do projeto
 
 A estrutura inicial do projeto está sendo organizada da seguinte forma:
@@ -179,7 +187,16 @@ AutoCheck.ConsoleApp/
 │    └── MenuPrincipal.cs
 │
 ├── Models/
-│      └── ItemVistoria.cs
+│      │ 
+│      └── Caminhao.cs
+│      │                       
+│      ├── Carro.cs           
+│      │    
+│      ├── ItemVistoria.cs
+│      │        
+│      ├── Moto.cs
+│      │ 
+│      └── Veiculo.cs
 │
 ├── Services/
 │     └── MotorVistoria.cs
@@ -214,12 +231,27 @@ Após apresentar a mensagem de boas-vindas, a classe encaminha a execução para
 Responsável pela navegação principal do sitema.
 
 O menu utiliza uma estrutura de repetição **While** e uma estrutura **switch** para processar a opção escolhida pelo usuário.
+                   
+                      MenuPrincipal
+                            ↓
+                       MenuVistoria
+
+## MenuVistoria
+
+                       MenuVistoria
+                            ↓
+                         Veiculo
+                            ↓
+                     List<ItemVistoria>
+                            ↓
+                       ItemVistoria   
+                      
 
 ---
 
 # Estrutura Atual do Projeto
 
-O fluxo implementado atualmene é:
+O fluxo implementado é:
 
                  Program.cs
                     │
@@ -229,13 +261,36 @@ O fluxo implementado atualmene é:
                     ▼
               MenuPrincipal
                     │
-                    ├── 1 - Vistoria
-                    │     
-                    ├── 2 - Relatório
-                    │
-                    ├── 3 - Laudo Cautelar
-                    │
-                    └── 0 - Sair
+          ┌─────────┴─────────┐
+          │                   │
+          ▼                   ▼
+   Nova Vistoria           Relatório             
+          │          
+          ▼
+    MenuVistoria
+          │  
+     ┌────┼────┐
+     ▼    ▼    ▼
+  Carro  Moto Caminhão
+     │    │    │
+     └────┼────┘   
+          ▼
+      Checklist
+          │ 
+          ▼
+    ItemVistoria
+          │ 
+          ▼
+    MotorVistoria
+          │ 
+          ▼
+      Resultado
+
+
+
+
+
+
 
 Neste momento as opções de **Vistoria, Relatório e Laudo Cautelar** estão estruturadas no menu enquanto suas funcionalidades serão implementadas nas próximas etapas.
 
@@ -257,9 +312,9 @@ Iniciando o projeto:
 
 2. Acessar a pasta do projeto
 
-   cd Mini-Projeto-Vistoria-tecnica
-   cd src
-   cd AutoCheck.ConsoleApp
+   - cd Mini-Projeto-Vistoria-tecnica
+   - cd src
+   - cd AutoCheck.ConsoleApp
 
 3. Restaurar as dependências
 
@@ -274,6 +329,8 @@ Iniciando o projeto:
    dotnet run
 
 Ao executar o comando **dotnet run** o sistema deverá iniciar a aplicação e apresentar a tela de apresentação do **AutoCheck** e posteriormente exibir o **MenuPrincipal**.   
+
+---
 
 ## Fluxo dos comandos
 
@@ -327,6 +384,8 @@ As próximas etapas planejadas são:
 16. Evoluir a funcionalidade de Laudo Cautelar
 
 A organização segue a estrutura recomendada no enunciado do mini-projeto, que prevê os modelos **ItemVistoria, Veiculo, Carro, Moto e Caminhão** além do serviço **MotorVistoria**.
+
+---
 
 # Melhorias futuras
 

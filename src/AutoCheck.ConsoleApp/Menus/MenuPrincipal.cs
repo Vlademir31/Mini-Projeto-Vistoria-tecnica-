@@ -1,4 +1,3 @@
-
 namespace AutoCheck.ConsoleApp.Menus
 {
     public class MenuPrincipal
@@ -6,6 +5,8 @@ namespace AutoCheck.ConsoleApp.Menus
         public void Exibir()
         {
             bool continuar = true;
+
+            MenuVistoria menuVistoria = new MenuVistoria();
 
             while (continuar)
             {
@@ -22,7 +23,7 @@ namespace AutoCheck.ConsoleApp.Menus
                 Console.WriteLine("3 - Laudo cautelar");
                 Console.WriteLine("0 - Sair");
                 Console.WriteLine();
-
+       
                 Console.Write("Escolha uma opção:  ");
 
                 string? opcao = Console.ReadLine();
@@ -30,7 +31,7 @@ namespace AutoCheck.ConsoleApp.Menus
                 switch (opcao)
                 {
                     case "1":
-                        Console.WriteLine("Nova Consulta");
+                        menuVistoria.Exibir();
                         break;
 
                     case "2":
@@ -57,16 +58,19 @@ namespace AutoCheck.ConsoleApp.Menus
                         Console.ResetColor();
                         break;
                         
-                        
                         default:
-
                         Console.ForegroundColor = ConsoleColor.DarkRed;
-                        Console.WriteLine();
-                        Console.WriteLine("Opção inválida.");
-                        Console.ReadKey();
-                        Console.ResetColor();
+                        Console.WriteLine("\nOpção inválida.\n");
+                        
                         break;
                  }
+                 if (continuar)
+                {
+                    Console.WriteLine("Pressione ENTER para continuar.");
+                    Console.WriteLine();
+                    Console.ReadLine();
+                    Console.ResetColor();
+                }
             }
 
         }
