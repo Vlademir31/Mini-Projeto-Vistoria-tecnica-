@@ -1,4 +1,4 @@
-using System.Net;
+using AutoCheck.ConsoleApp.Services;
 using AutoCheck.ConsoleApp.Models;
 
 namespace AutoCheck.ConsoleApp.Menus
@@ -77,7 +77,7 @@ namespace AutoCheck.ConsoleApp.Menus
                         case "3":
                             status = "Ruim";
                             break;
-
+                         
                         default:
 
                             Console.ForegroundColor = ConsoleColor.Red;
@@ -86,19 +86,48 @@ namespace AutoCheck.ConsoleApp.Menus
                             Console.WriteLine("Escolha entre 1, 2 ou 3.");
                             Console.ResetColor();
                             break;
+                            
                     }
+                    Console.ResetColor();
                 }
+                
+                
                 while (status == "");
-                {
-                    carro.AdicionarItemVistoriado(Item, status);
-                }
+
+                carro.AdicionarItemVistoriado(Item, status);
+
+            }
 
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine();
                 Console.WriteLine("Checklist concluido com sucesso.");
                 Console.ResetColor();
-            }
+
+            MotorVistoria motorVistoria = new MotorVistoria();
+
+            int pontuacaoTotal = motorVistoria.CalcularPontuacaoTotal(carro);
+
+            int pontuacaoMaxima = motorVistoria.CalcularPontuacaoMaxima(carro);
+            double percentual = motorVistoria.CalcularPercentual(carro);
+
+            string classificacao = motorVistoria.ClassificarVeiculo(percentual);
+            
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine();
+            Console.WriteLine("==================================");
+            Console.WriteLine("     RESULTADO DA VISTORIA     ");
+            Console.WriteLine("==================================");
+            Console.WriteLine();
+
+            Console.WriteLine($"Pontuação.................: {pontuacaoTotal} / {pontuacaoMaxima}");
+            Console.WriteLine($"Percentual................: {percentual:F2}%");
+            Console.WriteLine($"Classificação.............: {classificacao}");
+            Console.WriteLine();
+
+            Console.ResetColor();
+
         }
+
         public void Exibir()
         {
             Carro carro = CriarCarro();
@@ -117,6 +146,5 @@ namespace AutoCheck.ConsoleApp.Menus
             RealizarChecklist(carro);
 
         }
-
     }
 }

@@ -16,8 +16,7 @@ namespace AutoCheck.ConsoleApp.Menus
             Console.WriteLine("      GESTÃO DE CONSULTA     ");
             Console.WriteLine("===================================");
             Console.WriteLine();
-            Console.ResetColor();
-
+            
             Console.WriteLine("1 - Carro");
             Console.WriteLine("2 - Caminhão");
             Console.WriteLine("3 - Moto");
@@ -50,6 +49,7 @@ namespace AutoCheck.ConsoleApp.Menus
                 Console.ReadLine();
                 break;
             }
+            Console.ResetColor();
         }
     }
 }

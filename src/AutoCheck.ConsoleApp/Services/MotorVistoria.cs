@@ -52,7 +52,7 @@ namespace AutoCheck.ConsoleApp.Services
                 return 0;
             }
 
-            double percentual = ((double)pontuacaoObtida / pontuacaoMaxima) * 100;
+            double percentual = (double)pontuacaoObtida / pontuacaoMaxima * 100;
 
             return percentual;
         }
@@ -64,6 +64,7 @@ namespace AutoCheck.ConsoleApp.Services
             }
             else if (percentual >= 60)
             {
+                
                 return "Aprovado com Apontamento";
             }
             else
