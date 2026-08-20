@@ -22,7 +22,7 @@ namespace AutoCheck.ConsoleApp.Menus
                 Console.Write("Iniciando o sistema ");
                 for (int i = 0; i < 3; i++)
                 {
-                    Thread.Sleep(3000);
+                    Thread.Sleep(300);
                     Console.Write(".");
                 }
                 Console.ResetColor();
